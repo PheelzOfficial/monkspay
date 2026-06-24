@@ -854,7 +854,7 @@
         </div>
     </section>
 
-    <section class="py-24 bg-[#f9fafb] px-6 scroll-mt-12" data-aos="fade-up" id="testimonials">
+    <section class="py-24 bg-[#f9fafb] px-6 scroll-mt-12 overflow-hidden" data-aos="fade-up" id="testimonials">
         <div class="max-w-7xl mx-auto flex flex-col lg:flex-row gap-16 items-center">
             <div class="lg:w-1/3" data-aos="fade-right">
                 <span class="text-purple-600 font-bold tracking-wider text-xs uppercase mb-2 block">Testimonial</span>
@@ -884,10 +884,9 @@
                 </div>
             </div>
 
-            <div class="lg:w-2/3 overflow-hidden">
+            <div class="lg:w-2/3 w-full overflow-hidden min-w-0">
                 <div id="testimonialTrack" class="flex gap-6 transition-transform duration-500 ease-in-out">
-                    <div class="bg-white p-8 rounded-3xl shadow-sm border border-gray-100 min-w-[300px] flex-1"
-                        data-aos="fade-left" data-aos-delay="0">
+                    <div class="testimonial-card bg-white p-8 rounded-3xl shadow-sm border border-gray-100 flex flex-col">
                         <div class="flex gap-1 text-yellow-400 mb-4">
                             <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
                                 <path
@@ -910,7 +909,7 @@
                                     d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
                             </svg>
                         </div>
-                        <p class="text-gray-600 text-sm mb-6 leading-relaxed">
+                        <p class="text-gray-600 text-sm mb-6 leading-relaxed flex-grow">
                             Experience a payment app built on simplicity and transparency. No
                             hidden fees, just a seamless user experience that makes every
                             transaction easy and stress-free. Say goodbye to confusion and
@@ -930,8 +929,7 @@
                         </div>
                     </div>
 
-                    <div class="bg-white p-8 rounded-3xl shadow-sm border border-gray-100 min-w-[300px] flex-1"
-                        data-aos="fade-left" data-aos-delay="200">
+                    <div class="testimonial-card bg-white p-8 rounded-3xl shadow-sm border border-gray-100 flex flex-col">
                         <div class="flex gap-1 text-yellow-400 mb-4">
                             <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
                                 <path
@@ -954,7 +952,7 @@
                                     d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
                             </svg>
                         </div>
-                        <p class="text-gray-600 text-sm mb-6 leading-relaxed">
+                        <p class="text-gray-600 text-sm mb-6 leading-relaxed flex-grow">
                             Discover a payment app focused on transparency. Enjoy a seamless
                             experience, providing clarity and confidence without hidden fees,
                             just straightforward handling of your payments.
@@ -972,8 +970,7 @@
                     </div>
 
                     <!-- Card 3 -->
-                    <div
-                        class="testimonial-card bg-white p-8 rounded-3xl shadow-sm border border-gray-100 min-w-[300px] flex-1 flex-shrink-0">
+                    <div class="testimonial-card bg-white p-8 rounded-3xl shadow-sm border border-gray-100 flex flex-col">
                         <div class="flex gap-1 text-yellow-400 mb-4">
                             <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
                                 <path
@@ -996,7 +993,7 @@
                                     d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
                             </svg>
                         </div>
-                        <p class="text-gray-600 text-sm mb-6 leading-relaxed">
+                        <p class="text-gray-600 text-sm mb-6 leading-relaxed flex-grow">
                             I run a small e-commerce business and needed a reliable way to collect payments from clients
                             overseas. Monks Pay made it effortless — zero hidden charges, real-time alerts, and support
                             that actually helps.
@@ -1012,8 +1009,7 @@
                     </div>
 
                     <!-- Card 4 -->
-                    <div
-                        class="testimonial-card bg-white p-8 rounded-3xl shadow-sm border border-gray-100 min-w-[300px] flex-1 flex-shrink-0">
+                    <div class="testimonial-card bg-white p-8 rounded-3xl shadow-sm border border-gray-100 flex flex-col">
                         <div class="flex gap-1 text-yellow-400 mb-4">
                             <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
                                 <path
@@ -1036,7 +1032,7 @@
                                     d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
                             </svg>
                         </div>
-                        <p class="text-gray-600 text-sm mb-6 leading-relaxed">
+                        <p class="text-gray-600 text-sm mb-6 leading-relaxed flex-grow">
                             I've tried several payment apps but nothing compares to Monks Pay. The two-factor
                             authentication gives me peace of mind, and the fraud alerts have saved me twice already.
                             I'll never go back.
@@ -1052,8 +1048,7 @@
                     </div>
 
                     <!-- Card 5 -->
-                    <div
-                        class="testimonial-card bg-white p-8 rounded-3xl shadow-sm border border-gray-100 min-w-[300px] flex-1 flex-shrink-0">
+                    <div class="testimonial-card bg-white p-8 rounded-3xl shadow-sm border border-gray-100 flex flex-col">
                         <div class="flex gap-1 text-yellow-400 mb-4">
                             <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
                                 <path
@@ -1076,7 +1071,7 @@
                                     d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
                             </svg>
                         </div>
-                        <p class="text-gray-600 text-sm mb-6 leading-relaxed">
+                        <p class="text-gray-600 text-sm mb-6 leading-relaxed flex-grow">
                             Splitting bills with my flatmates used to be an ordeal. With Monks Pay it's a 10-second tap.
                             The real-time notifications mean everyone knows the moment money lands. Total game changer!
                         </p>
@@ -1091,8 +1086,7 @@
                     </div>
 
                     <!-- Card 6 -->
-                    <div
-                        class="testimonial-card bg-white p-8 rounded-3xl shadow-sm border border-gray-100 min-w-[300px] flex-1 flex-shrink-0">
+                    <div class="testimonial-card bg-white p-8 rounded-3xl shadow-sm border border-gray-100 flex flex-col">
                         <div class="flex gap-1 text-yellow-400 mb-4">
                             <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
                                 <path
@@ -1115,7 +1109,7 @@
                                     d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
                             </svg>
                         </div>
-                        <p class="text-gray-600 text-sm mb-6 leading-relaxed">
+                        <p class="text-gray-600 text-sm mb-6 leading-relaxed flex-grow">
                             Managing payroll for 40+ employees used to take hours. Monks Pay's business plan handles it
                             in minutes. The detailed reports are incredibly useful for accounting — our whole finance
                             team loves it.
@@ -1130,6 +1124,86 @@
                         </div>
                     </div>
 
+                    <!-- Card 7 -->
+                    <div class="testimonial-card bg-white p-8 rounded-3xl shadow-sm border border-gray-100 flex flex-col">
+                        <div class="flex gap-1 text-yellow-400 mb-4">
+                            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
+                                <path
+                                    d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+                            </svg>
+                            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
+                                <path
+                                    d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+                            </svg>
+                            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
+                                <path
+                                    d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+                            </svg>
+                            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
+                                <path
+                                    d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+                            </svg>
+                            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
+                                <path
+                                    d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+                            </svg>
+                        </div>
+                        <p class="text-gray-600 text-sm mb-6 leading-relaxed flex-grow">
+                            I was skeptical at first, but Monks Pay proved me wrong. Setting it up took under two
+                            minutes
+                            and my first international transfer went through instantly. The exchange rates are
+                            transparent
+                            and fair — I've saved a lot compared to my old bank.
+                        </p>
+                        <div class="flex items-center gap-3">
+                            <img src="https://images.unsplash.com/photo-1531746020798-e6953c6e8e04?auto=format&fit=crop&w=100&q=80"
+                                alt="Priya Nair" class="w-10 h-10 rounded-full object-cover" />
+                            <div>
+                                <div class="font-bold text-gray-900 text-sm">Priya Nair</div>
+                                <div class="text-xs text-gray-500">Financial Analyst</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Card 8 -->
+                    <div class="testimonial-card bg-white p-8 rounded-3xl shadow-sm border border-gray-100 flex flex-col">
+                        <div class="flex gap-1 text-yellow-400 mb-4">
+                            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
+                                <path
+                                    d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+                            </svg>
+                            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
+                                <path
+                                    d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+                            </svg>
+                            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
+                                <path
+                                    d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+                            </svg>
+                            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
+                                <path
+                                    d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+                            </svg>
+                            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
+                                <path
+                                    d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+                            </svg>
+                        </div>
+                        <p class="text-gray-600 text-sm mb-6 leading-relaxed flex-grow">
+                            The biometric login is a game changer. I used to dread opening my banking app but Monks Pay
+                            makes it feel modern and effortless. Payments process faster than any app I've tried, and
+                            the fraud alerts actually caught a suspicious charge within seconds.
+                        </p>
+                        <div class="flex items-center gap-3">
+                            <img src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?auto=format&fit=crop&w=100&q=80"
+                                alt="Tom Bradley" class="w-10 h-10 rounded-full object-cover" />
+                            <div>
+                                <div class="font-bold text-gray-900 text-sm">Tom Bradley</div>
+                                <div class="text-xs text-gray-500">Freelance Consultant</div>
+                            </div>
+                        </div>
+                    </div>
+
                 </div><!-- end testimonialTrack -->
             </div>
         </div>
@@ -1138,28 +1212,47 @@
     <script>
         (function () {
             const track = document.getElementById('testimonialTrack');
+            const wrapper = track.parentElement;
             const prevBtn = document.getElementById('testimonialPrev');
             const nextBtn = document.getElementById('testimonialNext');
             const cards = track.querySelectorAll('.testimonial-card');
             const totalCards = cards.length;
-            const visibleCount = 2; // show 2 cards at once on desktop
-            const maxIndex = totalCards - visibleCount;
+            const GAP = 24;
             let currentIndex = 0;
             let autoTimer = null;
 
+            function getVisibleCount() {
+                return window.innerWidth >= 768 ? 2 : 1;
+            }
+
             function getCardWidth() {
-                return cards[0].offsetWidth + 24; // 24px = gap-6
+                const vc = getVisibleCount();
+                return (wrapper.offsetWidth - GAP * (vc - 1)) / vc;
+            }
+
+            function setWidths() {
+                const w = getCardWidth();
+                cards.forEach(function (c) {
+                    c.style.width = w + 'px';
+                    c.style.minWidth = w + 'px';
+                    c.style.flexShrink = '0';
+                });
+            }
+
+            function getMaxIndex() {
+                return totalCards - getVisibleCount();
             }
 
             function goTo(index) {
-                currentIndex = Math.max(0, Math.min(index, maxIndex));
-                track.style.transform = 'translateX(-' + (currentIndex * getCardWidth()) + 'px)';
+                currentIndex = Math.max(0, Math.min(index, getMaxIndex()));
+                track.style.transform = 'translateX(-' + (currentIndex * (getCardWidth() + GAP)) + 'px)';
             }
 
             function startAuto() {
                 stopAuto();
                 autoTimer = setInterval(function () {
-                    goTo(currentIndex + visibleCount > maxIndex ? 0 : currentIndex + visibleCount);
+                    const vc = getVisibleCount();
+                    goTo(currentIndex + vc > getMaxIndex() ? 0 : currentIndex + vc);
                 }, 4000);
             }
 
@@ -1168,18 +1261,26 @@
             }
 
             prevBtn.addEventListener('click', function () {
-                goTo(currentIndex - visibleCount < 0 ? maxIndex : currentIndex - visibleCount);
+                const vc = getVisibleCount();
+                goTo(currentIndex - vc < 0 ? getMaxIndex() : currentIndex - vc);
                 stopAuto(); startAuto();
             });
 
             nextBtn.addEventListener('click', function () {
-                goTo(currentIndex + visibleCount > maxIndex ? 0 : currentIndex + visibleCount);
+                const vc = getVisibleCount();
+                goTo(currentIndex + vc > getMaxIndex() ? 0 : currentIndex + vc);
                 stopAuto(); startAuto();
+            });
+
+            window.addEventListener('resize', function () {
+                setWidths();
+                goTo(0);
             });
 
             track.addEventListener('mouseenter', stopAuto);
             track.addEventListener('mouseleave', startAuto);
 
+            setWidths();
             goTo(0);
             startAuto();
         })();
