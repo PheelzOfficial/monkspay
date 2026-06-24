@@ -1,0 +1,1406 @@
+<!doctype html>
+<html lang="en" class="scroll-smooth">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Monks Pay - Payment Landing Page</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Urbanist:ital,wght@0,100..900;1,100..900&display=swap"
+        rel="stylesheet" />
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ["Urbanist", "sans-serif"],
+                    },
+                    colors: {
+                        primary: "#2563EB", // blue-600
+                    },
+                },
+            },
+        };
+    </script>
+    <style>
+        body {
+            overflow-x: hidden;
+        }
+
+        @keyframes float {
+
+            0%,
+            100% {
+                transform: translateY(0);
+            }
+
+            50% {
+                transform: translateY(-15px);
+            }
+        }
+
+        .animate-float {
+            animation: float 4s ease-in-out infinite;
+        }
+
+        .animate-float-delay {
+            animation: float 5s ease-in-out infinite 1.5s;
+        }
+
+        .hero-gradient {
+            background: linear-gradient(115deg,
+                    #e0f2fe 0%,
+                    #ffffff 35%,
+                    #fffbeb 75%,
+                    #d2b0f7 100%);
+        }
+
+        @keyframes scrollX {
+            0% {
+                transform: translateX(0);
+            }
+
+            100% {
+                transform: translateX(-50%);
+            }
+        }
+
+        .animate-scrollX {
+            animation: scrollX 20s linear infinite;
+        }
+
+        .animate-scrollX:hover {
+            animation-play-state: paused;
+        }
+
+        /* ── Page Loader ── */
+        #page-loader {
+            position: fixed;
+            inset: 0;
+            z-index: 9999;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 2rem;
+            background: linear-gradient(135deg, #e0f2fe 0%, #ffffff 40%, #ede9fe 100%);
+            transition: opacity 0.6s ease, visibility 0.6s ease;
+        }
+
+        #page-loader.hide {
+            opacity: 0;
+            visibility: hidden;
+            pointer-events: none;
+        }
+
+        .loader-logo {
+            animation: loaderPulse 1.8s ease-in-out infinite;
+        }
+
+        @keyframes loaderPulse {
+
+            0%,
+            100% {
+                transform: scale(1);
+                opacity: 1;
+            }
+
+            50% {
+                transform: scale(1.06);
+                opacity: 0.8;
+            }
+        }
+
+        .loader-ring {
+            width: 56px;
+            height: 56px;
+            border-radius: 50%;
+            border: 3.5px solid transparent;
+            background:
+                linear-gradient(white, white) padding-box,
+                linear-gradient(135deg, #2563EB, #9333ea, #2563EB) border-box;
+            animation: loaderSpin 1s linear infinite;
+        }
+
+        @keyframes loaderSpin {
+            to {
+                transform: rotate(360deg);
+            }
+        }
+
+        .loader-dots {
+            display: flex;
+            gap: 6px;
+        }
+
+        .loader-dots span {
+            width: 6px;
+            height: 6px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #2563EB, #9333ea);
+            animation: loaderDot 1.2s ease-in-out infinite;
+        }
+
+        .loader-dots span:nth-child(2) {
+            animation-delay: 0.2s;
+        }
+
+        .loader-dots span:nth-child(3) {
+            animation-delay: 0.4s;
+        }
+
+        @keyframes loaderDot {
+
+            0%,
+            80%,
+            100% {
+                transform: scale(0.6);
+                opacity: 0.4;
+            }
+
+            40% {
+                transform: scale(1);
+                opacity: 1;
+            }
+        }
+    </style>
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet" />
+</head>
+
+<body class="font-sans text-gray-800 bg-white">
+
+    <!-- Page Loader -->
+    <div id="page-loader" aria-hidden="true">
+        <img src="images/logo.svg" alt="Monks Pay" class="loader-logo w-40" />
+        <div class="loader-ring"></div>
+        <div class="loader-dots">
+            <span></span><span></span><span></span>
+        </div>
+    </div>
+
+    <nav id="navbar"
+        class="fixed z-50 transition-all duration-500 top-2 md:top-5 left-2 md:left-5 right-2 md:right-5 bg-white/0 border-transparent rounded-[1rem] md:rounded-[2rem]"
+        data-aos="fade-down" data-aos-duration="1000">
+        <div class="max-w-7xl mx-auto px-6 py-5 flex justify-between items-center">
+            <div class="flex items-center gap-2 font-bold text-xl text-gray-900">
+                <img src="images/logo.svg" class="md:w-full w-[70%]" alt="Monks Pay Logo" />
+            </div>
+            <div class="hidden md:flex gap-8 text-gray-600 font-medium text-sm">
+                <a href="#features" class="hover:text-gray-900 text-md">Features</a>
+                <a href="#pricing" class="hover:text-gray-900 text-md">Pricing</a>
+                <a href="#security" class="hover:text-gray-900 text-md">Security</a>
+                <a href="#benefits" class="hover:text-gray-900 text-md">Benefits</a>
+            </div>
+            <a href="#"
+                class="bg-primary hover:bg-blue-700 text-white px-6 py-2.5 rounded-full text-sm font-semibold transition-colors">
+                Buy Template
+            </a>
+        </div>
+    </nav>
+
+    <!-- <section class="herosection p-4"> -->
+
+    <header
+        class="hero-gradient md:m-5 m-2 pt-32 pb-20 lg:pt-40 lg:pb-32 px-6 relative overflow-hidden md:rounded-[2rem] rounded-[1rem]">
+        <!-- Floating UI Badges -->
+        <div class="hidden md:flex absolute top-[19%] left-[2%] bg-white/60 backdrop-blur-md px-4 py-3 rounded-2xl shadow-xl border border-white/50 items-center gap-3 animate-float pointer-events-none z-10"
+            data-aos="zoom-in" data-aos-delay="400">
+            <div class="bg-yellow-400 p-2 rounded-full shadow-inner">
+                <svg class="w-5 h-5 text-white" fill="currentColor" viewBox="0 0 20 20">
+                    <path
+                        d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z">
+                    </path>
+                </svg>
+            </div>
+            <div>
+                <div class="text-xs text-gray-500 font-medium">Trustpilot</div>
+                <div class="text-sm font-bold text-gray-900">4.9/5 Rating</div>
+            </div>
+        </div>
+
+        <div class="hidden md:flex absolute bottom-[15%] left-[42%] bg-white/60 backdrop-blur-md px-4 py-3 rounded-2xl shadow-xl border border-white/50 items-center gap-3 animate-float-delay pointer-events-none z-10"
+            data-aos="zoom-in" data-aos-delay="600">
+            <div class="bg-green-500 p-2 rounded-full shadow-inner">
+                <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"></path>
+                </svg>
+            </div>
+            <div>
+                <div class="text-xs text-gray-500 font-medium">Bank Level</div>
+                <div class="text-sm font-bold text-gray-900">100% Secure</div>
+            </div>
+        </div>
+
+        <!-- Soft background orbs to fill emptiness -->
+        <div
+            class="absolute top-1/4 -left-10 w-96 h-96 bg-blue-200 rounded-full mix-blend-multiply filter blur-[100px] opacity-40 animate-float pointer-events-none z-0">
+        </div>
+        <div
+            class="absolute bottom-1/4 left-1/3 w-96 h-96 bg-purple-200 rounded-full mix-blend-multiply filter blur-[100px] opacity-40 animate-float-delay pointer-events-none z-0">
+        </div>
+
+        <div class="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+            <div class="max-w-xl z-10" data-aos="fade-right" data-aos-duration="1200">
+                <span class="text-purple-600 font-bold tracking-wider text-xs uppercase mb-4 block">Easy Payment</span>
+                <h1 class="text-3xl md:text-4xl lg:text-6xl font-bold text-gray-900 leading-tight mb-6">
+                    <span class="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-purple-600">Pay</span>
+                    <span class="relative">fast and smarter
+                        <!-- <svg class="absolute w-full h-4 -bottom-1 left-0 text-primary" viewBox="0 0 200 20"
+                            preserveAspectRatio="none">
+                            <path fill="currentColor" d="M0,15 Q100,0 200,15 L200,20 L0,20 Z" />
+                        </svg> -->
+                        <img src="images/Vector.svg" class="absolute w-full h-4 -bottom-1 left-0 text-primary" alt="" />
+                    </span><br />from anywhere
+                </h1>
+                <p class="text-gray-600 text-lg mb-8 max-w-md">
+                    Experience the future of payments: fast, secure, and tailored for
+                    the next generation's convenience and trust.
+                </p>
+                <div class="flex flex-wrap gap-4 mb-6">
+                    <button
+                        class="bg-black text-white flex items-center gap-2 px-4 py-2 rounded-xl hover:bg-gray-800 transition">
+                        <!-- <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
+                            <path
+                                d="M17.05 20.28c-.98.95-2.05.8-3.08.35-1.09-.46-2.09-.48-3.24 0-1.44.62-2.2.44-3.06-.35C2.79 15.25 3.51 7.59 9.05 7.31c1.35.07 2.29.74 3.08.8 1.18-.04 2.26-.78 3.59-.72 1.58.07 2.76.73 3.53 1.84-2.99 1.76-2.5 5.56.36 6.74-.7 1.73-1.63 3.33-2.56 4.31zm-2.85-15.4c.59-1.57-.42-3.32-1.95-3.56-.56 1.6.48 3.32 1.95 3.56z" />
+                        </svg> -->
+                        <img src="images/apple.svg" class="w-6 h-6" alt="Apple Logo" />
+                        <div class="text-left">
+                            <div class="text-[10px] opacity-80">Download on the</div>
+                            <div class="text-sm font-semibold -mt-1">App Store</div>
+                        </div>
+                    </button>
+                    <button
+                        class="bg-black text-white flex items-center gap-2 px-4 py-2 rounded-xl hover:bg-gray-800 transition">
+                        <!-- <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
+                            <path
+                                d="M3 20.5v-17c0-.83.67-1.5 1.5-1.5.34 0 .67.11.94.32l13.1 10c.65.5.65 1.48 0 1.98l-13.1 10c-.27.21-.6.32-.94.32-.83 0-1.5-.67-1.5-1.5z" />
+                        </svg> -->
+                        <img src="images/playstore.svg" class="w-6 h-6" alt="Google Play Logo" />
+                        <div class="text-left">
+                            <div class="text-[10px] opacity-80">GET IT ON</div>
+                            <div class="text-sm font-semibold -mt-1">Google Play</div>
+                        </div>
+                    </button>
+                </div>
+                <div class="flex gap-6 text-sm text-gray-600 font-medium">
+                    <span class="flex items-center gap-1"><svg class="w-4 h-4 text-green-500" fill="none"
+                            stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7">
+                            </path>
+                        </svg>
+                        No Card required</span>
+                    <span class="flex items-center gap-1"><svg class="w-4 h-4 text-green-500" fill="none"
+                            stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7">
+                            </path>
+                        </svg>
+                        Fast acceptance</span>
+                </div>
+
+                <div
+                    class="mt-8 flex items-center gap-4 bg-white/50 backdrop-blur-sm p-3 rounded-2xl border border-white inline-flex animate-float-delay z-10 relative">
+                    <div class="flex -space-x-3">
+                        <img class="w-10 h-10 rounded-full border-2 border-white shadow-sm"
+                            src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=100&q=80"
+                            alt="User" />
+                        <img class="w-10 h-10 rounded-full border-2 border-white shadow-sm"
+                            src="https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?auto=format&fit=crop&w=100&q=80"
+                            alt="User" />
+                        <img class="w-10 h-10 rounded-full border-2 border-white shadow-sm"
+                            src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&w=100&q=80"
+                            alt="User" />
+                        <div
+                            class="w-10 h-10 rounded-full border-2 border-white bg-gray-900 flex items-center justify-center text-white text-xs font-bold shadow-sm">
+                            +2k
+                        </div>
+                    </div>
+                    <div class="text-sm">
+                        <span class="font-bold text-gray-900 block">Loved by users</span>
+                        <span class="text-gray-500 text-xs">Join our community</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="relative">
+                <img src="images/hero.svg" alt="Man using phone"
+                    class="w-full max-w-md mx-auto rounded-[3rem] object-cover h-[600px] z-10 relative"
+                    data-aos="zoom-in" data-aos-duration="1200" />
+
+                <div
+                    class="absolute top-10 -left-16 bg-white p-3 rounded-2xl shadow-xl z-20 flex items-center gap-3 animate-float pointer-events-none hidden md:flex">
+                    <div class="bg-blue-100 p-2 rounded-full">
+                        <svg class="w-5 h-5 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945M8 3.935V5.5A2.5 2.5 0 0010.5 8h.5a2 2 0 012 2 2 2 0 104 0 2 2 0 012-2h1.064M15 20.488V18a2 2 0 012-2h3.064M21 12a9 9 0 11-18 0 9 9 0 0118 0z">
+                            </path>
+                        </svg>
+                    </div>
+                    <div>
+                        <div class="text-[10px] text-gray-500 font-medium">
+                            Global Transfers
+                        </div>
+                        <div class="text-sm font-bold text-gray-900">Supported</div>
+                    </div>
+                </div>
+
+                <div
+                    class="absolute bottom-10 -left-0 bg-white p-4 rounded-2xl shadow-xl z-20 flex flex-col gap-1 w-48 animate-float">
+                    <span class="text-xs text-gray-500 font-medium">Payment Received</span>
+                    <span class="text-xl font-bold text-primary">+35,890.00</span>
+                    <div class="flex justify-between text-[10px] text-gray-400 mt-2">
+                        <span>1st Jan, 2024</span>
+                        <span class="text-green-500 font-medium">3.09% ↗</span>
+                    </div>
+                </div>
+
+                <div
+                    class="absolute top-[45%] right-4 bg-white p-3 rounded-2xl shadow-xl z-20 flex items-center gap-1 animate-float-delay">
+                    <div class="flex -space-x-2">
+                        <img class="w-8 h-8 rounded-full border-2 border-white"
+                            src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=100&q=80"
+                            alt="User" />
+                        <img class="w-8 h-8 rounded-full border-2 border-white"
+                            src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=100&q=80"
+                            alt="User" />
+                        <img class="w-8 h-8 rounded-full border-2 border-white"
+                            src="https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?auto=format&fit=crop&w=100&q=80"
+                            alt="User" />
+                    </div>
+                    <div>
+                        <div class="text-sm font-bold text-gray-900">120K+</div>
+                        <div class="text-[10px] text-gray-500">Active users</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <div class="py-24 px-6 max-w-7xl mx-auto text-center scroll-mt-24" id="features">
+        <span class="text-purple-600 font-bold tracking-wider text-xs uppercase mb-2 block">Features</span>
+        <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-16 max-w-md mx-auto">
+            Why choose Monks Pay for effortless payments?
+        </h2>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+            <div class="bg-blue-50/50 p-8 rounded-3xl text-center hover:shadow-lg transition" data-aos="fade-up"
+                data-aos-delay="0">
+                <div class="w-14 h-14 mx-auto flex items-center justify-center mb-6 text-primary">
+                    <img src="icons/instant.svg" alt="">
+                </div>
+                <h3 class="font-bold text-gray-900 mb-3">Instant payments</h3>
+                <p class="text-gray-500 text-sm">
+                    Send money to friends or family in real-time, for free.
+                </p>
+            </div>
+            <div class="bg-orange-50/50 p-8 rounded-3xl text-center hover:shadow-lg transition" data-aos="fade-up"
+                data-aos-delay="150">
+                <div class="w-14 h-14 mx-auto flex items-center justify-center mb-6 text-primary">
+                    <img src="icons/hidden.svg" alt="">
+                </div>
+                <h3 class="font-bold text-gray-900 mb-3">No hidden fees</h3>
+                <p class="text-gray-500 text-sm">
+                    Clear and simple pricing. Always be aware of your costs.
+                </p>
+            </div>
+            <div class="bg-teal-50/50 p-8 rounded-3xl text-center hover:shadow-lg transition" data-aos="fade-up"
+                data-aos-delay="300">
+                <div class="w-14 h-14 mx-auto flex items-center justify-center mb-6 text-primary">
+                    <img src="icons/digital.svg" alt="">
+                </div>
+                <h3 class="font-bold text-gray-900 mb-3">Digital wallet</h3>
+                <p class="text-gray-500 text-sm">
+                    Store money securely and make fast transfers or purchases.
+                </p>
+            </div>
+            <div class="bg-purple-50/50 p-8 rounded-3xl text-center hover:shadow-lg transition" data-aos="fade-up"
+                data-aos-delay="450">
+                <div class="w-14 h-14 mx-auto flex items-center justify-center mb-6 text-primary">
+                    <img src="icons/secure.svg" alt="">
+                </div>
+                <h3 class="font-bold text-gray-900 mb-3">Secure transactions</h3>
+                <p class="text-gray-500 text-sm">
+                    End-to-end encryption for all transactions.
+                </p>
+            </div>
+        </div>
+    </div>
+    <!-- </section> -->
+
+    <!-- Infinite Scrolling Logo Marquee -->
+    <div class="py-10 bg-white overflow-hidden relative" data-aos="fade-in">
+        <!-- Fade Masks -->
+        <div class="absolute inset-y-0 left-0 w-32 bg-gradient-to-r from-white to-transparent z-10 pointer-events-none">
+        </div>
+        <div
+            class="absolute inset-y-0 right-0 w-32 bg-gradient-to-l from-white to-transparent z-10 pointer-events-none">
+        </div>
+
+        <!-- Scrolling Track -->
+        <div class="flex items-center gap-16 w-max animate-scrollX px-8">
+            <!-- Set 1 -->
+            <div class="flex items-center gap-16 shrink-0">
+                <img src="icons/firstlogo.svg" class="h-8 md:h-10 opacity-70 hover:opacity-100 transition-opacity"
+                    alt="" />
+                <img src="icons/secondlogo.svg" class="h-8 md:h-10 opacity-70 hover:opacity-100 transition-opacity"
+                    alt="" />
+                <img src="icons/thirdlogo.svg" class="h-8 md:h-10 opacity-70 hover:opacity-100 transition-opacity"
+                    alt="" />
+                <img src="icons/fourthlogo.svg" class="h-8 md:h-10 opacity-70 hover:opacity-100 transition-opacity"
+                    alt="" />
+                <img src="icons/fifthlogo.svg" class="h-8 md:h-10 opacity-70 hover:opacity-100 transition-opacity"
+                    alt="" />
+                <img src="icons/sixthlogo.svg" class="h-8 md:h-10 opacity-70 hover:opacity-100 transition-opacity"
+                    alt="" />
+            </div>
+            <!-- Set 2 (Duplicate for looping) -->
+            <div class="flex items-center gap-16 shrink-0">
+                <img src="icons/firstlogo.svg" class="h-8 md:h-10 opacity-70 hover:opacity-100 transition-opacity"
+                    alt="" />
+                <img src="icons/secondlogo.svg" class="h-8 md:h-10 opacity-70 hover:opacity-100 transition-opacity"
+                    alt="" />
+                <img src="icons/thirdlogo.svg" class="h-8 md:h-10 opacity-70 hover:opacity-100 transition-opacity"
+                    alt="" />
+                <img src="icons/fourthlogo.svg" class="h-8 md:h-10 opacity-70 hover:opacity-100 transition-opacity"
+                    alt="" />
+                <img src="icons/fifthlogo.svg" class="h-8 md:h-10 opacity-70 hover:opacity-100 transition-opacity"
+                    alt="" />
+                <img src="icons/sixthlogo.svg" class="h-8 md:h-10 opacity-70 hover:opacity-100 transition-opacity"
+                    alt="" />
+            </div>
+            <!-- Set 3 (Safety Duplicate) -->
+            <div class="flex items-center gap-16 shrink-0">
+                <img src="icons/firstlogo.svg" class="h-8 md:h-10 opacity-70 hover:opacity-100 transition-opacity"
+                    alt="" />
+                <img src="icons/secondlogo.svg" class="h-8 md:h-10 opacity-70 hover:opacity-100 transition-opacity"
+                    alt="" />
+                <img src="icons/thirdlogo.svg" class="h-8 md:h-10 opacity-70 hover:opacity-100 transition-opacity"
+                    alt="" />
+                <img src="icons/fourthlogo.svg" class="h-8 md:h-10 opacity-70 hover:opacity-100 transition-opacity"
+                    alt="" />
+                <img src="icons/fifthlogo.svg" class="h-8 md:h-10 opacity-70 hover:opacity-100 transition-opacity"
+                    alt="" />
+                <img src="icons/sixthlogo.svg" class="h-8 md:h-10 opacity-70 hover:opacity-100 transition-opacity"
+                    alt="" />
+            </div>
+            <!-- Set 4 (Safety Duplicate) -->
+            <div class="flex items-center gap-16 shrink-0">
+                <img src="icons/firstlogo.svg" class="h-8 md:h-10 opacity-70 hover:opacity-100 transition-opacity"
+                    alt="" />
+                <img src="icons/secondlogo.svg" class="h-8 md:h-10 opacity-70 hover:opacity-100 transition-opacity"
+                    alt="" />
+                <img src="icons/thirdlogo.svg" class="h-8 md:h-10 opacity-70 hover:opacity-100 transition-opacity"
+                    alt="" />
+                <img src="icons/fourthlogo.svg" class="h-8 md:h-10 opacity-70 hover:opacity-100 transition-opacity"
+                    alt="" />
+                <img src="icons/fifthlogo.svg" class="h-8 md:h-10 opacity-70 hover:opacity-100 transition-opacity"
+                    alt="" />
+                <img src="icons/sixthlogo.svg" class="h-8 md:h-10 opacity-70 hover:opacity-100 transition-opacity"
+                    alt="" />
+            </div>
+        </div>
+    </div>
+
+    <section class="py-24 bg-gray-50 px-6 scroll-mt-12" data-aos="fade-up" id="benefits">
+        <div class="max-w-7xl mx-auto">
+            <div class="flex flex-col md:flex-row justify-between items-start md:items-end mb-16 gap-6">
+                <div class="max-w-lg">
+                    <span class="text-purple-600 font-bold tracking-wider text-xs uppercase mb-2 block">How It
+                        Works</span>
+                    <h2 class="text-3xl md:text-4xl font-bold text-gray-900">
+                        Make payments, transfers, and more in 3 simple steps
+                    </h2>
+                </div>
+                <a href="#"
+                    class="bg-primary text-white px-6 py-3 rounded-full font-semibold hover:bg-blue-700 transition shrink-0">Get
+                    Started Now</a>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-16">
+                <div class="bg-white p-8 rounded-3xl relative overflow-hidden z-10 shadow-sm border border-gray-100"
+                    data-aos="fade-up" data-aos-delay="0">
+                    <span class="absolute -top-4 -left-2 text-8xl font-black text-gray-300 -z-10">01</span>
+                    <div class="w-12 h-12 bg-gray-50 rounded-xl flex items-center justify-center mb-6 text-gray-700">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"></path>
+                        </svg>
+                    </div>
+                    <h3 class="font-bold text-gray-900 mb-3 text-lg">
+                        Download Monks Pay
+                    </h3>
+                    <p class="text-gray-500 text-sm leading-relaxed">
+                        Get the Monks Pay app today from the App Store or Google Play
+                        hassle free.
+                    </p>
+                </div>
+                <div class="bg-white p-8 rounded-3xl relative overflow-hidden z-10 shadow-sm border border-gray-100"
+                    data-aos="fade-up" data-aos-delay="150">
+                    <span class="absolute -top-4 -left-2 text-8xl font-black text-gray-300 -z-10">02</span>
+                    <div class="w-12 h-12 bg-gray-50 rounded-xl flex items-center justify-center mb-6 text-gray-700">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M3 10h18M7 15h1m4 0h1m-7 4h12a3 3 0 003-3V8a3 3 0 00-3-3H6a3 3 0 00-3 3v8a3 3 0 003 3z">
+                            </path>
+                        </svg>
+                    </div>
+                    <h3 class="font-bold text-gray-900 mb-3 text-lg">
+                        Link your bank or card
+                    </h3>
+                    <p class="text-gray-500 text-sm leading-relaxed">
+                        Easily connect your account in seconds with advanced security for
+                        peace of mind.
+                    </p>
+                </div>
+                <div class="bg-white p-8 rounded-3xl relative overflow-hidden z-10 shadow-sm border border-gray-100"
+                    data-aos="fade-up" data-aos-delay="300">
+                    <span class="absolute -top-4 -left-2 text-8xl font-black text-gray-300 -z-10">03</span>
+                    <div class="w-12 h-12 bg-gray-50 rounded-xl flex items-center justify-center mb-6 text-gray-700">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z">
+                            </path>
+                        </svg>
+                    </div>
+                    <h3 class="font-bold text-gray-900 mb-3 text-lg">Start paying</h3>
+                    <p class="text-gray-500 text-sm leading-relaxed">
+                        Easily split bills, send money to friends, and make smooth online
+                        payments instantly.
+                    </p>
+                </div>
+            </div>
+
+            <div class="relative group cursor-pointer mt-8 lg:mt-0" onclick="openVideoModal()" data-aos="zoom-in"
+                data-aos-duration="1000">
+                <img src="images/video.svg" alt="Video thumbnail"
+                    class="w-full h-[500px] object-cover rounded-3xl shadow-lg transition duration-500 group-hover:shadow-2xl group-hover:scale-[1.01]" />
+                <div
+                    class="absolute inset-0 bg-black/10 group-hover:bg-black/20 transition duration-300 rounded-3xl flex items-center justify-center">
+                    <div
+                        class="w-20 h-20 bg-white/95 backdrop-blur-md rounded-full flex items-center justify-center shadow-xl group-hover:scale-110 group-hover:bg-white transition duration-300">
+                        <svg class="w-8 h-8 text-primary ml-1" fill="currentColor" viewBox="0 0 20 20">
+                            <path d="M4 4l12 6-12 6z" />
+                        </svg>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="py-24 px-6 max-w-7xl mx-auto scroll-mt-12" data-aos="fade-up" id="security">
+        <div class="flex flex-col md:flex-row justify-between items-start mb-16 gap-10">
+            <div class="max-w-md" data-aos="fade-right">
+                <span class="text-purple-600 font-bold tracking-wider text-xs uppercase mb-2 block">Security</span>
+                <h2 class="text-3xl md:text-4xl font-bold text-gray-900">
+                    We protect your money at every step with Monks Pay
+                </h2>
+            </div>
+            <div class="max-w-md text-gray-600" data-aos="fade-left">
+                <p>
+                    Monks Pay ensures your money is protected at every step with
+                    advanced encryption, real-time monitoring, and multi-factor
+                    authentication.
+                </p>
+            </div>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 bg-gray-50 p-6 md:p-10 rounded-[3rem]">
+            <div class="bg-white p-8 rounded-3xl shadow-sm border border-gray-100" data-aos="fade-up"
+                data-aos-delay="0">
+                <div class="w-2 h-2 rounded-full bg-blue-500 mb-4"></div>
+                <h4 class="font-bold text-gray-900 mb-2">
+                    Two-factor authentication
+                </h4>
+                <p class="text-sm text-gray-500">
+                    Two-factor authentication ensures added protection by using
+                    verification steps.
+                </p>
+            </div>
+            <div class="bg-white p-8 rounded-3xl shadow-sm border border-gray-100" data-aos="fade-up"
+                data-aos-delay="100">
+                <div class="w-2 h-2 rounded-full bg-red-500 mb-4"></div>
+                <h4 class="font-bold text-gray-900 mb-2">
+                    Fraud detection and alerts
+                </h4>
+                <p class="text-sm text-gray-500">
+                    Fraud detection safeguards your money, sending instant alerts for
+                    any activity.
+                </p>
+            </div>
+            <div class="bg-white p-8 rounded-3xl shadow-sm border border-gray-100" data-aos="fade-up"
+                data-aos-delay="200">
+                <div class="w-2 h-2 rounded-full bg-green-500 mb-4"></div>
+                <h4 class="font-bold text-gray-900 mb-2">
+                    Transaction notifications
+                </h4>
+                <p class="text-sm text-gray-500">
+                    Instant notifications for transaction keep you informed to manage
+                    your finances.
+                </p>
+            </div>
+            <div class="bg-white p-8 rounded-3xl shadow-sm border border-gray-100" data-aos="fade-up"
+                data-aos-delay="300">
+                <div class="w-2 h-2 rounded-full bg-cyan-500 mb-4"></div>
+                <h4 class="font-bold text-gray-900 mb-2">Biometric access</h4>
+                <p class="text-sm text-gray-500">
+                    Easily and securely log in with biometric features, and facial
+                    recognition.
+                </p>
+            </div>
+            <div class="bg-white p-8 rounded-3xl shadow-sm border border-gray-100" data-aos="fade-up"
+                data-aos-delay="400">
+                <div class="w-2 h-2 rounded-full bg-orange-500 mb-4"></div>
+                <h4 class="font-bold text-gray-900 mb-2">End-to-end encryption</h4>
+                <p class="text-sm text-gray-500">
+                    By encryption, protecting your data from unauthorized access.
+                </p>
+            </div>
+            <div class="bg-white p-8 rounded-3xl shadow-sm border border-gray-100" data-aos="fade-up"
+                data-aos-delay="500">
+                <div class="w-2 h-2 rounded-full bg-purple-500 mb-4"></div>
+                <h4 class="font-bold text-gray-900 mb-2">24/7 Protection support</h4>
+                <p class="text-sm text-gray-500">
+                    Our dedicated team is available around the clock to help you.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <section class="py-24 px-6 relative overflow-hidden bg-white scroll-mt-12" data-aos="fade-up" id="pricing">
+        <div class="max-w-7xl mx-auto text-center mb-16 relative z-10">
+            <span class="text-purple-600 font-bold tracking-wider text-xs uppercase mb-2 block">Pricing</span>
+            <h2 class="text-3xl md:text-4xl font-bold text-gray-900 max-w-sm mx-auto">
+                Simple transparent pricing no hidden fees
+            </h2>
+        </div>
+
+        <div class="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-8 items-center relative z-10">
+            <div class="bg-white border border-gray-200 p-8 rounded-[2rem] shadow-sm" data-aos="fade-up"
+                data-aos-delay="0">
+                <h3 class="text-xl font-bold text-gray-900">Free Plan</h3>
+                <p class="text-gray-500 text-sm mt-1 mb-6">
+                    Free for personal payments.
+                </p>
+                <div class="text-4xl font-black text-gray-900 mb-8">
+                    $0<span class="text-sm font-normal text-gray-500">/month</span>
+                </div>
+
+                <ul class="space-y-4 text-sm text-gray-600 mb-8">
+                    <li class="flex items-center gap-3">
+                        <div class="text-primary bg-blue-50 p-1 rounded-full">
+                            <svg class="w-3 h-3" fill="currentColor" viewBox="0 0 20 20">
+                                <path fill-rule="evenodd"
+                                    d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
+                                    clip-rule="evenodd" />
+                            </svg>
+                        </div>
+                        Up to 100 transactions per month
+                    </li>
+                    <li class="flex items-center gap-3">
+                        <div class="text-primary bg-blue-50 p-1 rounded-full">
+                            <svg class="w-3 h-3" fill="currentColor" viewBox="0 0 20 20">
+                                <path fill-rule="evenodd"
+                                    d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
+                                    clip-rule="evenodd" />
+                            </svg>
+                        </div>
+                        Basic fraud protection
+                    </li>
+                    <li class="flex items-center gap-3">
+                        <div class="text-primary bg-blue-50 p-1 rounded-full">
+                            <svg class="w-3 h-3" fill="currentColor" viewBox="0 0 20 20">
+                                <path fill-rule="evenodd"
+                                    d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
+                                    clip-rule="evenodd" />
+                            </svg>
+                        </div>
+                        Email support
+                    </li>
+                </ul>
+                <button
+                    class="w-full py-3 border border-gray-300 rounded-full font-semibold text-gray-900 hover:bg-gray-50 transition">
+                    Get Free Plan
+                </button>
+            </div>
+
+            <div class="bg-gray-900 text-white p-8 rounded-[2rem] shadow-xl md:-my-4 transform scale-105"
+                data-aos="fade-up" data-aos-delay="150">
+                <h3 class="text-xl font-bold">Advanced</h3>
+                <p class="text-gray-400 text-sm mt-1 mb-6">
+                    Minimal fees for advanced transactions
+                </p>
+                <div class="text-4xl font-black mb-8">
+                    $19<span class="text-sm font-normal text-gray-400">/month</span>
+                </div>
+
+                <ul class="space-y-4 text-sm text-gray-300 mb-8">
+                    <li class="flex items-center gap-3">
+                        <div class="text-gray-900 bg-white p-1 rounded-full">
+                            <svg class="w-3 h-3" fill="currentColor" viewBox="0 0 20 20">
+                                <path fill-rule="evenodd"
+                                    d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
+                                    clip-rule="evenodd" />
+                            </svg>
+                        </div>
+                        Up to 1000 transactions per month
+                    </li>
+                    <li class="flex items-center gap-3">
+                        <div class="text-gray-900 bg-white p-1 rounded-full">
+                            <svg class="w-3 h-3" fill="currentColor" viewBox="0 0 20 20">
+                                <path fill-rule="evenodd"
+                                    d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
+                                    clip-rule="evenodd" />
+                            </svg>
+                        </div>
+                        Advanced fraud protection
+                    </li>
+                    <li class="flex items-center gap-3">
+                        <div class="text-gray-900 bg-white p-1 rounded-full">
+                            <svg class="w-3 h-3" fill="currentColor" viewBox="0 0 20 20">
+                                <path fill-rule="evenodd"
+                                    d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
+                                    clip-rule="evenodd" />
+                            </svg>
+                        </div>
+                        Detailed transaction reports
+                    </li>
+                    <li class="flex items-center gap-3">
+                        <div class="text-gray-900 bg-white p-1 rounded-full">
+                            <svg class="w-3 h-3" fill="currentColor" viewBox="0 0 20 20">
+                                <path fill-rule="evenodd"
+                                    d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
+                                    clip-rule="evenodd" />
+                            </svg>
+                        </div>
+                        Priority email & chat support
+                    </li>
+                </ul>
+                <button
+                    class="w-full py-3 bg-primary text-white rounded-full font-semibold hover:bg-blue-700 transition">
+                    Get Advanced Plan
+                </button>
+            </div>
+
+            <div class="bg-white border border-gray-200 p-8 rounded-[2rem] shadow-sm" data-aos="fade-up"
+                data-aos-delay="300">
+                <h3 class="text-xl font-bold text-gray-900">Business</h3>
+                <p class="text-gray-500 text-sm mt-1 mb-6">
+                    Premium business transactions
+                </p>
+                <div class="text-4xl font-black text-gray-900 mb-8">
+                    $29<span class="text-sm font-normal text-gray-500">/month</span>
+                </div>
+
+                <ul class="space-y-4 text-sm text-gray-600 mb-8">
+                    <li class="flex items-center gap-3">
+                        <div class="text-primary bg-blue-50 p-1 rounded-full">
+                            <svg class="w-3 h-3" fill="currentColor" viewBox="0 0 20 20">
+                                <path fill-rule="evenodd"
+                                    d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
+                                    clip-rule="evenodd" />
+                            </svg>
+                        </div>
+                        Unlimited transactions per month
+                    </li>
+                    <li class="flex items-center gap-3">
+                        <div class="text-primary bg-blue-50 p-1 rounded-full">
+                            <svg class="w-3 h-3" fill="currentColor" viewBox="0 0 20 20">
+                                <path fill-rule="evenodd"
+                                    d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
+                                    clip-rule="evenodd" />
+                            </svg>
+                        </div>
+                        Premium fraud protection
+                    </li>
+                    <li class="flex items-center gap-3">
+                        <div class="text-primary bg-blue-50 p-1 rounded-full">
+                            <svg class="w-3 h-3" fill="currentColor" viewBox="0 0 20 20">
+                                <path fill-rule="evenodd"
+                                    d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
+                                    clip-rule="evenodd" />
+                            </svg>
+                        </div>
+                        Detailed transaction reports
+                    </li>
+                    <li class="flex items-center gap-3">
+                        <div class="text-primary bg-blue-50 p-1 rounded-full">
+                            <svg class="w-3 h-3" fill="currentColor" viewBox="0 0 20 20">
+                                <path fill-rule="evenodd"
+                                    d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
+                                    clip-rule="evenodd" />
+                            </svg>
+                        </div>
+                        Priority email & chat support
+                    </li>
+                </ul>
+                <button
+                    class="w-full py-3 border border-gray-300 rounded-full font-semibold text-gray-900 hover:bg-gray-50 transition">
+                    Get Business Plan
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <section class="py-24 bg-[#f9fafb] px-6 scroll-mt-12" data-aos="fade-up" id="testimonials">
+        <div class="max-w-7xl mx-auto flex flex-col lg:flex-row gap-16 items-center">
+            <div class="lg:w-1/3" data-aos="fade-right">
+                <span class="text-purple-600 font-bold tracking-wider text-xs uppercase mb-2 block">Testimonial</span>
+                <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-6">
+                    We've build trust with reviews from real users
+                </h2>
+                <p class="text-gray-500 mb-8 text-sm leading-relaxed">
+                    Boost your credibility by featuring genuine testimonials from real
+                    users, showcasing their positive experiences and satisfaction with
+                    Monks Pay services.
+                </p>
+                <div class="flex gap-4">
+                    <button id="testimonialPrev"
+                        class="w-12 h-12 rounded-full border border-gray-300 flex items-center justify-center hover:bg-white transition">
+                        <svg class="w-5 h-5 text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7">
+                            </path>
+                        </svg>
+                    </button>
+                    <button id="testimonialNext"
+                        class="w-12 h-12 rounded-full bg-gray-900 flex items-center justify-center hover:bg-gray-800 transition">
+                        <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7">
+                            </path>
+                        </svg>
+                    </button>
+                </div>
+            </div>
+
+            <div class="lg:w-2/3 overflow-hidden">
+                <div id="testimonialTrack" class="flex gap-6 transition-transform duration-500 ease-in-out">
+                    <div class="bg-white p-8 rounded-3xl shadow-sm border border-gray-100 min-w-[300px] flex-1"
+                        data-aos="fade-left" data-aos-delay="0">
+                        <div class="flex gap-1 text-yellow-400 mb-4">
+                            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
+                                <path
+                                    d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+                            </svg>
+                            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
+                                <path
+                                    d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+                            </svg>
+                            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
+                                <path
+                                    d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+                            </svg>
+                            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
+                                <path
+                                    d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+                            </svg>
+                            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
+                                <path
+                                    d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+                            </svg>
+                        </div>
+                        <p class="text-gray-600 text-sm mb-6 leading-relaxed">
+                            Experience a payment app built on simplicity and transparency. No
+                            hidden fees, just a seamless user experience that makes every
+                            transaction easy and stress-free. Say goodbye to confusion and
+                            hello to straightforward payments.
+                        </p>
+                        <div class="flex items-center gap-3">
+                            <img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=100&q=80"
+                                alt="Ethan Williams" class="w-10 h-10 rounded-full object-cover" />
+                            <div>
+                                <div class="font-bold text-gray-900 text-sm">
+                                    Ethan Williams
+                                </div>
+                                <div class="text-xs text-gray-500">
+                                    Digital Marketing Specialist
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="bg-white p-8 rounded-3xl shadow-sm border border-gray-100 min-w-[300px] flex-1"
+                        data-aos="fade-left" data-aos-delay="200">
+                        <div class="flex gap-1 text-yellow-400 mb-4">
+                            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
+                                <path
+                                    d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+                            </svg>
+                            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
+                                <path
+                                    d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+                            </svg>
+                            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
+                                <path
+                                    d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+                            </svg>
+                            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
+                                <path
+                                    d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+                            </svg>
+                            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
+                                <path
+                                    d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+                            </svg>
+                        </div>
+                        <p class="text-gray-600 text-sm mb-6 leading-relaxed">
+                            Discover a payment app focused on transparency. Enjoy a seamless
+                            experience, providing clarity and confidence without hidden fees,
+                            just straightforward handling of your payments.
+                        </p>
+                        <div class="flex items-center gap-3">
+                            <img src="https://images.unsplash.com/photo-1599566150163-29194dcaad36?auto=format&fit=crop&w=100&q=80"
+                                alt="Daniel Thompson" class="w-10 h-10 rounded-full object-cover" />
+                            <div>
+                                <div class="font-bold text-gray-900 text-sm">
+                                    Daniel Thompson
+                                </div>
+                                <div class="text-xs text-gray-500">Product Designer</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Card 3 -->
+                    <div
+                        class="testimonial-card bg-white p-8 rounded-3xl shadow-sm border border-gray-100 min-w-[300px] flex-1 flex-shrink-0">
+                        <div class="flex gap-1 text-yellow-400 mb-4">
+                            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
+                                <path
+                                    d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+                            </svg>
+                            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
+                                <path
+                                    d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+                            </svg>
+                            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
+                                <path
+                                    d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+                            </svg>
+                            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
+                                <path
+                                    d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+                            </svg>
+                            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
+                                <path
+                                    d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+                            </svg>
+                        </div>
+                        <p class="text-gray-600 text-sm mb-6 leading-relaxed">
+                            I run a small e-commerce business and needed a reliable way to collect payments from clients
+                            overseas. Monks Pay made it effortless — zero hidden charges, real-time alerts, and support
+                            that actually helps.
+                        </p>
+                        <div class="flex items-center gap-3">
+                            <img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&w=100&q=80"
+                                alt="Sophia Reyes" class="w-10 h-10 rounded-full object-cover" />
+                            <div>
+                                <div class="font-bold text-gray-900 text-sm">Sophia Reyes</div>
+                                <div class="text-xs text-gray-500">E-commerce Entrepreneur</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Card 4 -->
+                    <div
+                        class="testimonial-card bg-white p-8 rounded-3xl shadow-sm border border-gray-100 min-w-[300px] flex-1 flex-shrink-0">
+                        <div class="flex gap-1 text-yellow-400 mb-4">
+                            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
+                                <path
+                                    d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+                            </svg>
+                            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
+                                <path
+                                    d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+                            </svg>
+                            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
+                                <path
+                                    d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+                            </svg>
+                            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
+                                <path
+                                    d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+                            </svg>
+                            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
+                                <path
+                                    d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+                            </svg>
+                        </div>
+                        <p class="text-gray-600 text-sm mb-6 leading-relaxed">
+                            I've tried several payment apps but nothing compares to Monks Pay. The two-factor
+                            authentication gives me peace of mind, and the fraud alerts have saved me twice already.
+                            I'll never go back.
+                        </p>
+                        <div class="flex items-center gap-3">
+                            <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=100&q=80"
+                                alt="Marcus Lee" class="w-10 h-10 rounded-full object-cover" />
+                            <div>
+                                <div class="font-bold text-gray-900 text-sm">Marcus Lee</div>
+                                <div class="text-xs text-gray-500">Software Engineer</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Card 5 -->
+                    <div
+                        class="testimonial-card bg-white p-8 rounded-3xl shadow-sm border border-gray-100 min-w-[300px] flex-1 flex-shrink-0">
+                        <div class="flex gap-1 text-yellow-400 mb-4">
+                            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
+                                <path
+                                    d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+                            </svg>
+                            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
+                                <path
+                                    d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+                            </svg>
+                            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
+                                <path
+                                    d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+                            </svg>
+                            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
+                                <path
+                                    d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+                            </svg>
+                            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
+                                <path
+                                    d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+                            </svg>
+                        </div>
+                        <p class="text-gray-600 text-sm mb-6 leading-relaxed">
+                            Splitting bills with my flatmates used to be an ordeal. With Monks Pay it's a 10-second tap.
+                            The real-time notifications mean everyone knows the moment money lands. Total game changer!
+                        </p>
+                        <div class="flex items-center gap-3">
+                            <img src="https://images.unsplash.com/photo-1580489944761-15a19d654956?auto=format&fit=crop&w=100&q=80"
+                                alt="Aisha Okonkwo" class="w-10 h-10 rounded-full object-cover" />
+                            <div>
+                                <div class="font-bold text-gray-900 text-sm">Aisha Okonkwo</div>
+                                <div class="text-xs text-gray-500">University Student</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Card 6 -->
+                    <div
+                        class="testimonial-card bg-white p-8 rounded-3xl shadow-sm border border-gray-100 min-w-[300px] flex-1 flex-shrink-0">
+                        <div class="flex gap-1 text-yellow-400 mb-4">
+                            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
+                                <path
+                                    d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+                            </svg>
+                            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
+                                <path
+                                    d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+                            </svg>
+                            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
+                                <path
+                                    d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+                            </svg>
+                            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
+                                <path
+                                    d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+                            </svg>
+                            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
+                                <path
+                                    d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+                            </svg>
+                        </div>
+                        <p class="text-gray-600 text-sm mb-6 leading-relaxed">
+                            Managing payroll for 40+ employees used to take hours. Monks Pay's business plan handles it
+                            in minutes. The detailed reports are incredibly useful for accounting — our whole finance
+                            team loves it.
+                        </p>
+                        <div class="flex items-center gap-3">
+                            <img src="https://images.unsplash.com/photo-1560250097-0b93528c311a?auto=format&fit=crop&w=100&q=80"
+                                alt="James Harrington" class="w-10 h-10 rounded-full object-cover" />
+                            <div>
+                                <div class="font-bold text-gray-900 text-sm">James Harrington</div>
+                                <div class="text-xs text-gray-500">Operations Manager</div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div><!-- end testimonialTrack -->
+            </div>
+        </div>
+    </section>
+
+    <script>
+        (function () {
+            const track = document.getElementById('testimonialTrack');
+            const prevBtn = document.getElementById('testimonialPrev');
+            const nextBtn = document.getElementById('testimonialNext');
+            const cards = track.querySelectorAll('.testimonial-card');
+            const totalCards = cards.length;
+            const visibleCount = 2; // show 2 cards at once on desktop
+            const maxIndex = totalCards - visibleCount;
+            let currentIndex = 0;
+            let autoTimer = null;
+
+            function getCardWidth() {
+                return cards[0].offsetWidth + 24; // 24px = gap-6
+            }
+
+            function goTo(index) {
+                currentIndex = Math.max(0, Math.min(index, maxIndex));
+                track.style.transform = 'translateX(-' + (currentIndex * getCardWidth()) + 'px)';
+            }
+
+            function startAuto() {
+                stopAuto();
+                autoTimer = setInterval(function () {
+                    goTo(currentIndex + visibleCount > maxIndex ? 0 : currentIndex + visibleCount);
+                }, 4000);
+            }
+
+            function stopAuto() {
+                if (autoTimer) clearInterval(autoTimer);
+            }
+
+            prevBtn.addEventListener('click', function () {
+                goTo(currentIndex - visibleCount < 0 ? maxIndex : currentIndex - visibleCount);
+                stopAuto(); startAuto();
+            });
+
+            nextBtn.addEventListener('click', function () {
+                goTo(currentIndex + visibleCount > maxIndex ? 0 : currentIndex + visibleCount);
+                stopAuto(); startAuto();
+            });
+
+            track.addEventListener('mouseenter', stopAuto);
+            track.addEventListener('mouseleave', startAuto);
+
+            goTo(0);
+            startAuto();
+        })();
+    </script>
+
+    <section class="py-24 px-6 pb-32" data-aos="zoom-in">
+        <div class="max-w-7xl mx-auto rounded-[3rem] relative overflow-hidden h-[400px] flex items-center justify-center text-center px-4"
+            style="
+          background-image: url(&quot;images/experience.svg&quot;);
+          background-size: cover;
+          background-position: center;
+        ">
+            <div class="absolute inset-0 bg-gray-900/80"></div>
+
+            <div class="relative z-10 max-w-2xl" data-aos="fade-up" data-aos-delay="200">
+                <h2 class="text-3xl md:text-5xl font-bold text-white mb-6 leading-tight">
+                    Ready to experience seamless secure payments globally
+                </h2>
+                <p class="text-gray-300 mb-8 text-sm md:text-base px-4">
+                    Ready for hassle-free, secure payments anywhere in the world? Start
+                    using Monks Pay today it's fast, free, and focused on keeping your
+                    transactions secure!
+                </p>
+                <div class="flex flex-col sm:flex-row justify-center gap-4">
+                    <button
+                        class="bg-primary hover:bg-blue-700 text-white px-8 py-3 rounded-full font-semibold transition">
+                        Download the App
+                    </button>
+                    <button
+                        class="border border-gray-400 hover:border-white text-white px-8 py-3 rounded-full font-semibold transition bg-black/30 backdrop-blur-sm">
+                        Get Started Now
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="border-t border-gray-100 pt-16 pb-8 px-6"
+        style="background: radial-gradient(ellipse 80% 60% at 0% 100%, #e9d5ff 0%, #f5f0ff 35%, #ffffff 70%);"
+        data-aos="fade-up">
+        <div class="max-w-7xl mx-auto flex flex-col md:flex-row justify-between mb-16 gap-10">
+            <div class="max-w-sm">
+                <div class="flex items-center gap-2 font-bold text-xl text-gray-900 mb-4">
+                    <img src="images/logo.svg" alt="Monks Pay Logo" />
+                </div>
+                <p class="text-gray-500 text-sm leading-relaxed">
+                    Monks Pay offers secure, seamless, and fee-free payments for
+                    effortless global transactions.
+                </p>
+            </div>
+
+            <div class="flex gap-16">
+                <div>
+                    <h4 class="font-bold text-gray-900 mb-4">Short links</h4>
+                    <ul class="space-y-3 text-sm text-gray-500">
+                        <li>
+                            <a href="#features" class="hover:text-gray-900">Features</a>
+                        </li>
+                        <li>
+                            <a href="#benefits" class="hover:text-gray-900">How it works</a>
+                        </li>
+                        <li>
+                            <a href="#security" class="hover:text-gray-900">Security</a>
+                        </li>
+                        <li>
+                            <a href="#testimonials" class="hover:text-gray-900">Testimonial</a>
+                        </li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="font-bold text-gray-900 mb-4">Other pages</h4>
+                    <ul class="space-y-3 text-sm text-gray-500">
+                        <li>
+                            <a href="#" class="hover:text-gray-900">Privacy policy</a>
+                        </li>
+                        <li>
+                            <a href="#" class="hover:text-gray-900">Terms & conditions</a>
+                        </li>
+                        <li><a href="#" class="hover:text-gray-900">404</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div
+            class="max-w-7xl mx-auto border-t border-gray-100 pt-8 flex flex-col md:flex-row justify-between items-center text-sm text-gray-500 gap-4">
+            <div>Built with Tailwind &nbsp;&nbsp; Get This Template</div>
+            <div>2024 © Design Monks. All rights reserved.</div>
+        </div>
+    </footer>
+
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        AOS.init({
+            duration: 800,
+            once: true,
+            offset: 100,
+        });
+    </script>
+
+    <script>
+        window.addEventListener("scroll", function () {
+            const navbar = document.getElementById("navbar");
+            if (window.scrollY > 20) {
+                // Scrolled: expand to edges, add glass background
+                navbar.classList.add(
+                    "top-0",
+                    "left-0",
+                    "right-0",
+                    "bg-white/90",
+                    "backdrop-blur-md",
+                    "border-b",
+                    "border-gray-200",
+                    "shadow-sm",
+                );
+                navbar.classList.remove(
+                    "top-2",
+                    "md:top-5",
+                    "left-2",
+                    "md:left-5",
+                    "right-2",
+                    "md:right-5",
+                    "bg-white/0",
+                    "border-transparent",
+                    "rounded-[1rem]",
+                    "md:rounded-[2rem]",
+                );
+            } else {
+                // Top: inset margins, transparent
+                navbar.classList.add(
+                    "top-2",
+                    "md:top-5",
+                    "left-2",
+                    "md:left-5",
+                    "right-2",
+                    "md:right-5",
+                    "bg-white/0",
+                    "border-transparent",
+                    "rounded-[1rem]",
+                    "md:rounded-[2rem]",
+                );
+                navbar.classList.remove(
+                    "top-0",
+                    "left-0",
+                    "right-0",
+                    "bg-white/90",
+                    "backdrop-blur-md",
+                    "border-b",
+                    "border-gray-200",
+                    "shadow-sm",
+                );
+            }
+        });
+
+        // trigger once on load to set initial state correctly
+        window.dispatchEvent(new Event("scroll"));
+    </script>
+
+    <!-- Video Modal -->
+    <div id="videoModal"
+        class="fixed inset-0 z-[100] hidden items-center justify-center bg-black/80 backdrop-blur-sm opacity-0 transition-opacity duration-300">
+        <div class="relative w-full max-w-4xl mx-4 rounded-2xl overflow-visible shadow-2xl transform scale-95 transition-transform duration-300"
+            id="videoModalContent">
+            <button onclick="closeVideoModal()"
+                class="absolute -top-12 right-0 md:-right-12 md:-top-12 w-10 h-10 bg-white/20 hover:bg-white/40 rounded-full flex items-center justify-center text-white transition z-10">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12">
+                    </path>
+                </svg>
+            </button>
+            <div class="aspect-w-16 aspect-h-9 bg-black rounded-2xl overflow-hidden relative"
+                style="padding-top: 56.25%;">
+                <iframe id="youtubePlayer" class="absolute top-0 left-0 w-full h-full" src=""
+                    title="YouTube video player" frameborder="0"
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                    allowfullscreen></iframe>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const videoModal = document.getElementById("videoModal");
+        const videoModalContent = document.getElementById("videoModalContent");
+        const youtubePlayer = document.getElementById("youtubePlayer");
+        // YouTube video URL (must use /embed/ format for iframes)
+        const videoUrl = "https://www.youtube.com/embed/h9PBbI56zyo?autoplay=1&si=Oj1AW14Aa38KRPWW";
+
+        function openVideoModal() {
+            videoModal.classList.remove("hidden");
+            videoModal.classList.add("flex");
+
+            // small delay to allow display:block to apply before animating opacity
+            setTimeout(() => {
+                videoModal.classList.remove("opacity-0");
+                videoModalContent.classList.remove("scale-95");
+                videoModalContent.classList.add("scale-100");
+                youtubePlayer.src = videoUrl;
+            }, 10);
+        }
+
+        function closeVideoModal() {
+            videoModal.classList.add("opacity-0");
+            videoModalContent.classList.remove("scale-100");
+            videoModalContent.classList.add("scale-95");
+
+            // Wait for transition to finish
+            setTimeout(() => {
+                videoModal.classList.add("hidden");
+                videoModal.classList.remove("flex");
+                youtubePlayer.src = ""; // Stop playing
+            }, 300);
+        }
+
+        // Close on backdrop click
+        videoModal.addEventListener("click", function (e) {
+            if (e.target === videoModal) {
+                closeVideoModal();
+            }
+        });
+    </script>
+
+    <script>
+        window.addEventListener("load", function () {
+            var loader = document.getElementById("page-loader");
+            // Brief minimum display so the animation actually plays
+            setTimeout(function () {
+                loader.classList.add("hide");
+                loader.addEventListener("transitionend", function () {
+                    loader.remove();
+                }, { once: true });
+            }, 1000);
+        });
+    </script>
+</body>
+
+</html>
