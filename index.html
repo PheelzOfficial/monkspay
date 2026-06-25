@@ -1,5 +1,6 @@
 <!doctype html>
 <html lang="en" class="scroll-smooth">
+<!-- check every section, it happens on every section. feels like there is extra scrolls on each sections -->
 
 <head>
     <meta charset="UTF-8" />
@@ -24,7 +25,8 @@
     <link href="https://fonts.googleapis.com/css2?family=Urbanist:ital,wght@0,100..900;1,100..900&display=swap"
         rel="stylesheet" />
     <style>
-        html, body {
+        html,
+        body {
             overflow-x: hidden;
         }
 
@@ -68,10 +70,16 @@
 
         .animate-scrollX {
             animation: scrollX 20s linear infinite;
+            will-change: transform;
         }
 
         .animate-scrollX:hover {
             animation-play-state: paused;
+        }
+
+        .animate-float,
+        .animate-float-delay {
+            will-change: transform;
         }
 
         /* ── Page Loader ── */
@@ -166,7 +174,9 @@
         }
     </style>
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet" media="print" onload="this.media='all'" />
-    <noscript><link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet" /></noscript>
+    <noscript>
+        <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet" />
+    </noscript>
 </head>
 
 <body class="font-sans text-gray-800 bg-white">
@@ -502,7 +512,7 @@
         </div>
     </div>
 
-    <section class="py-24 bg-gray-50 px-6 scroll-mt-12 overflow-hidden" data-aos="fade-up" id="benefits">
+    <section class="py-24 bg-gray-50 px-6 scroll-mt-12 overflow-hidden" id="benefits">
         <div class="max-w-7xl mx-auto">
             <div class="flex flex-col md:flex-row justify-between items-start md:items-end mb-16 gap-6">
                 <div class="max-w-lg">
@@ -588,7 +598,7 @@
         </div>
     </section>
 
-    <section class="py-24 px-6 max-w-7xl mx-auto scroll-mt-12 overflow-hidden" data-aos="fade-up" id="security">
+    <section class="py-24 px-6 max-w-7xl mx-auto scroll-mt-12 overflow-hidden" id="security">
         <div class="flex flex-col md:flex-row justify-between items-start mb-16 gap-10">
             <div class="max-w-md" data-aos="fade-right">
                 <span class="text-purple-600 font-bold tracking-wider text-xs uppercase mb-2 block">Security</span>
@@ -667,7 +677,7 @@
         </div>
     </section>
 
-    <section class="py-24 px-6 relative overflow-hidden bg-white scroll-mt-12" data-aos="fade-up" id="pricing">
+    <section class="py-24 px-6 relative overflow-hidden bg-white scroll-mt-12" id="pricing">
         <div class="max-w-7xl mx-auto text-center mb-16 relative z-10">
             <span class="text-purple-600 font-bold tracking-wider text-xs uppercase mb-2 block">Pricing</span>
             <h2 class="text-3xl md:text-4xl font-bold text-gray-900 max-w-sm mx-auto">
@@ -724,8 +734,8 @@
                 </button>
             </div>
 
-            <div class="bg-gray-900 text-white p-8 rounded-[2rem] shadow-xl md:-my-4 md:scale-105"
-                data-aos="fade-up" data-aos-delay="150">
+            <div class="bg-gray-900 text-white p-8 rounded-[2rem] shadow-xl md:-my-4 md:scale-105" data-aos="fade-up"
+                data-aos-delay="150">
                 <h3 class="text-xl font-bold">Advanced</h3>
                 <p class="text-gray-400 text-sm mt-1 mb-6">
                     Minimal fees for advanced transactions
@@ -842,7 +852,7 @@
         </div>
     </section>
 
-    <section class="py-24 bg-[#f9fafb] px-6 scroll-mt-12 overflow-hidden" data-aos="fade-up" id="testimonials">
+    <section class="py-24 bg-[#f9fafb] px-6 scroll-mt-12 overflow-hidden" id="testimonials">
         <div class="max-w-7xl mx-auto flex flex-col lg:flex-row gap-16 items-center">
             <div class="lg:w-1/3" data-aos="fade-right">
                 <span class="text-purple-600 font-bold tracking-wider text-xs uppercase mb-2 block">Testimonial</span>
@@ -874,7 +884,8 @@
 
             <div class="lg:w-2/3 w-full overflow-hidden min-w-0">
                 <div id="testimonialTrack" class="flex gap-6 transition-transform duration-500 ease-in-out">
-                    <div class="testimonial-card bg-white p-8 rounded-3xl shadow-sm border border-gray-100 flex flex-col">
+                    <div
+                        class="testimonial-card bg-white p-8 rounded-3xl shadow-sm border border-gray-100 flex flex-col">
                         <div class="flex gap-1 text-yellow-400 mb-4">
                             <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
                                 <path
@@ -917,7 +928,8 @@
                         </div>
                     </div>
 
-                    <div class="testimonial-card bg-white p-8 rounded-3xl shadow-sm border border-gray-100 flex flex-col">
+                    <div
+                        class="testimonial-card bg-white p-8 rounded-3xl shadow-sm border border-gray-100 flex flex-col">
                         <div class="flex gap-1 text-yellow-400 mb-4">
                             <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
                                 <path
@@ -958,7 +970,8 @@
                     </div>
 
                     <!-- Card 3 -->
-                    <div class="testimonial-card bg-white p-8 rounded-3xl shadow-sm border border-gray-100 flex flex-col">
+                    <div
+                        class="testimonial-card bg-white p-8 rounded-3xl shadow-sm border border-gray-100 flex flex-col">
                         <div class="flex gap-1 text-yellow-400 mb-4">
                             <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
                                 <path
@@ -997,7 +1010,8 @@
                     </div>
 
                     <!-- Card 4 -->
-                    <div class="testimonial-card bg-white p-8 rounded-3xl shadow-sm border border-gray-100 flex flex-col">
+                    <div
+                        class="testimonial-card bg-white p-8 rounded-3xl shadow-sm border border-gray-100 flex flex-col">
                         <div class="flex gap-1 text-yellow-400 mb-4">
                             <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
                                 <path
@@ -1036,7 +1050,8 @@
                     </div>
 
                     <!-- Card 5 -->
-                    <div class="testimonial-card bg-white p-8 rounded-3xl shadow-sm border border-gray-100 flex flex-col">
+                    <div
+                        class="testimonial-card bg-white p-8 rounded-3xl shadow-sm border border-gray-100 flex flex-col">
                         <div class="flex gap-1 text-yellow-400 mb-4">
                             <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
                                 <path
@@ -1074,7 +1089,8 @@
                     </div>
 
                     <!-- Card 6 -->
-                    <div class="testimonial-card bg-white p-8 rounded-3xl shadow-sm border border-gray-100 flex flex-col">
+                    <div
+                        class="testimonial-card bg-white p-8 rounded-3xl shadow-sm border border-gray-100 flex flex-col">
                         <div class="flex gap-1 text-yellow-400 mb-4">
                             <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
                                 <path
@@ -1113,7 +1129,8 @@
                     </div>
 
                     <!-- Card 7 -->
-                    <div class="testimonial-card bg-white p-8 rounded-3xl shadow-sm border border-gray-100 flex flex-col">
+                    <div
+                        class="testimonial-card bg-white p-8 rounded-3xl shadow-sm border border-gray-100 flex flex-col">
                         <div class="flex gap-1 text-yellow-400 mb-4">
                             <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
                                 <path
@@ -1154,7 +1171,8 @@
                     </div>
 
                     <!-- Card 8 -->
-                    <div class="testimonial-card bg-white p-8 rounded-3xl shadow-sm border border-gray-100 flex flex-col">
+                    <div
+                        class="testimonial-card bg-white p-8 rounded-3xl shadow-sm border border-gray-100 flex flex-col">
                         <div class="flex gap-1 text-yellow-400 mb-4">
                             <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
                                 <path
@@ -1450,7 +1468,7 @@
                     "shadow-sm",
                 );
             }
-        });
+        }, { passive: true });
 
         // trigger once on load to set initial state correctly
         window.dispatchEvent(new Event("scroll"));
